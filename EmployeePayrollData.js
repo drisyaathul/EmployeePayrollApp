@@ -46,8 +46,8 @@ class EmployeePayrollData {
         return this.startDate;
     }
     set startDate(startDate) {
-        const inputDate = new Date(start_date);
-         if(isNaN(inputData.getTime())) {
+        const inputDate = new Date(startDate);
+         if(isNaN(inputDate.getTime())) {
             throw new Error ("Invalid Date Format!")
          }
          //check if the date is not in the future
