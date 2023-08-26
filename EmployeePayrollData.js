@@ -8,7 +8,10 @@ class EmployeePayrollData {
         return this.name;
     }
     set name(name) {
-        this.name = name;
+        let nameRegex = RegExp("^[A-Z]{1}[a-zA-Z\\s]{2,}$")
+        if (nameRegex.test(name)) 
+            this.name = name;
+        else throw "Name is Incorrect !!" 
     }
 
     get profileImage() {
@@ -43,7 +46,23 @@ class EmployeePayrollData {
         return this.startDate;
     }
     set startDate(startDate) {
-        this.startDate = startDate;
+        const inputDate = new Date(start_date);
+         if(isNaN(inputData.getTime())) {
+            throw new Error ("Invalid Date Format!")
+         }
+         //check if the date is not in the future
+         const currentDate = new Date();
+         if (inputDate >  currentDate) {
+            throw new Error("Start date cannot be in the future")
+         }
+         //check if the date is within 30days of joining
+         const thirtyDaysAgo = new Date();
+         thirtyDaysAgo.setDate(currentDate.getDate() - 30);
+         if (inputDate < this.joinDate || inputDate > currentDate) {
+            throw new Error ("Start date should be within 30 days of joining")
+         }
+         //Set the Start Date if all validation checks pass
+         this.startDate = inputDate;
     }
 
     get notes() {
